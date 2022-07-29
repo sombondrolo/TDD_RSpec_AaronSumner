@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.10'
+gem 'rails', '4.1.10' # July 12, 2016
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '1.3.13'
+gem 'sqlite3', '1.3.13' # January 04, 2017
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -40,4 +40,4 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass', '~> 3.1.1'
 
-gem 'rake', '< 11.0'
+gem 'rake', '< 11.0' # 10.5.0 - January 13, 2016
