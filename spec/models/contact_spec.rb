@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Contact.rb model code >" do
-  it "is valid with a firstname, lastname and email" do
+  it "is valid: with a firstname, lastname and email" do
     contact = Contact.new(
       firstname: 'Aaron',
       lastname: 'Sumner',
@@ -9,25 +9,25 @@ describe "Contact.rb model code >" do
     expect(contact).to be_valid
   end
 
-  it "is invalid without a firstname" do
+  it "is invalid: without a firstname" do
     contact = Contact.new(firstname: nil)
     contact.valid?
     expect(contact.errors[:firstname]).to include("can't be blank")
   end
 
-  it "is invalid without a lastname" do
+  it "is invalid: without a lastname" do
     contact = Contact.new(lastname: nil)
     contact.valid?
     expect(contact.errors[:lastname]).to include("can't be blank")
   end
 
-  it "is invalid without an email address" do
+  it "is invalid: without an email address" do
     contact = Contact.new(email: nil)
     contact.valid?
     expect(contact.errors[:email]).to include("can't be blank")
   end
 
-  it "is invalid with a duplicate email address" do
+  it "is invalid: with a duplicate email address" do
     Contact.create(
       firstname: 'Joe', lastname: 'Shmoe', email: 'joe@sample.com'
     )
@@ -38,14 +38,14 @@ describe "Contact.rb model code >" do
     expect(contact.errors[:email]).to include("has already been taken")
   end
 
-  it "returns a contact's full name as a string" do
+  it "has a method that returns: a contact's full name as a string" do
     contact = Contact.new(
       firstname: 'Chad', lastname: 'Thunder', email: 'chad@thunder.com'
     )
     expect(contact.name).to eq 'Chad Thunder'
   end
 
-  it "returns a sorted array of results that match" do
+  it "has a scope that returns: a sorted array of results that match" do
     smith = Contact.create(
       firstname: 'John',
       lastname: 'Smith',
@@ -64,7 +64,7 @@ describe "Contact.rb model code >" do
     expect(Contact.by_letter("J")).to eq [johnson, jones]
   end
 
-  it "omits results that do not match" do
+  it "has a scope that omits: results that do not match" do
     smith = Contact.create(
       firstname: 'John',
       lastname: 'Smith',
