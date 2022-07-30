@@ -10,38 +10,32 @@ describe "Contact.rb model code >" do
   end
 
   it "is invalid: without a firstname" do
-    contact = Contact.new(firstname: nil)
+    contact = build(:contact, firstname: nil)
     contact.valid?
     expect(contact.errors[:firstname]).to include("can't be blank")
   end
 
   it "is invalid: without a lastname" do
-    contact = Contact.new(lastname: nil)
+    contact = build(:contact, lastname: nil)
     contact.valid?
     expect(contact.errors[:lastname]).to include("can't be blank")
   end
 
   it "is invalid: without an email address" do
-    contact = Contact.new(email: nil)
+    contact = build(:contact, email: nil)
     contact.valid?
     expect(contact.errors[:email]).to include("can't be blank")
   end
 
   it "is invalid: with a duplicate email address" do
-    Contact.create(
-      firstname: 'Joe', lastname: 'Shmoe', email: 'joe@sample.com'
-    )
-    contact = Contact.new(
-      firstname: 'Billy', lastname: 'Beta', email: 'joe@sample.com'
-    )
+    create(:contact, email: 'aaron@example.com')
+    contact = build(:contact, email: 'aaron@example.com')
     contact.valid?
     expect(contact.errors[:email]).to include("has already been taken")
   end
 
   it "has a method that returns: a contact's full name as a string" do
-    contact = Contact.new(
-      firstname: 'Chad', lastname: 'Thunder', email: 'chad@thunder.com'
-    )
+    contact = build(:contact, firstname: 'Chad', lastname: 'Thunder')
     expect(contact.name).to eq 'Chad Thunder'
   end
 
@@ -113,5 +107,9 @@ describe "Contact.rb model code >" do
         expect(Contact.by_letter("J")).not_to include @smith
       end
     end
+  end
+
+  it "has a valid factory" do
+    expect(build(:contact)).to be_valid
   end
 end
