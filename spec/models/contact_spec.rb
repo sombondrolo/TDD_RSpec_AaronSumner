@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe "Contact.rb model code >" do
   it "is valid: with a firstname, lastname and email" do
-    contact = Contact.new(
+    # contact = Contact.new(
+      contact = build(:contact,
       firstname: 'Aaron',
       lastname: 'Sumner',
       email: 'tester@example.com')
@@ -39,62 +40,78 @@ describe "Contact.rb model code >" do
     expect(contact.name).to eq 'Chad Thunder'
   end
 
-  it "has a scope that returns: a sorted array of results that match" do
-    smith = Contact.create(
-      firstname: 'John',
-      lastname: 'Smith',
-      email: 'jsmith@example.com'
-    )
-    jones = Contact.create(
-      firstname: 'Tim',
-      lastname: 'Jones',
-      email: 'tjones@example.com'
-    )
-    johnson = Contact.create(
-      firstname: 'John',
-      lastname: 'Johnson',
-      email: 'jjohnson@example.com'
-    )
-    expect(Contact.by_letter("J")).to eq [johnson, jones]
-  end
-
-  it "has a scope that omits: results that do not match" do
-    smith = Contact.create(
-      firstname: 'John',
-      lastname: 'Smith',
-      email: 'jsmith@example.com'
-    )
-    jones = Contact.create(
-      firstname: 'Tim',
-      lastname: 'Jones',
-      email: 'tjones@example.com'
-    )
-    johnson = Contact.create(
-      firstname: 'John',
-      lastname: 'Johnson',
-      email: 'jjohnson@example.com'
-    )
-    expect(Contact.by_letter("J")).to_not include smith
-  end
-
   describe "/ Testing lastname by_letter Scope /" do
     before :each do
-      @smith = Contact.create(
+      # smith = Contact.create(
+      #   firstname: 'John',
+      #   lastname: 'Smith',
+      #   email: 'jsmith@example.com'
+      # )
+      # jones = Contact.create(
+      #   firstname: 'Tim',
+      #   lastname: 'Jones',
+      #   email: 'tjones@example.com'
+      # )
+      # johnson = Contact.create(
+      #   firstname: 'John',
+      #   lastname: 'Johnson',
+      #   email: 'jjohnson@example.com'
+      # )
+      @smith = create(:contact,
         firstname: 'John',
         lastname: 'Smith',
         email: 'jsmith@example.com'
       )
-      @jones = Contact.create(
+      @jones = create(:contact,
         firstname: 'Tim',
         lastname: 'Jones',
         email: 'tjones@example.com'
       )
-      @johnson = Contact.create(
+      @johnson = create(:contact,
         firstname: 'John',
         lastname: 'Johnson',
         email: 'jjohnson@example.com'
       )
     end
+
+    # it "has a scope that returns: a sorted array of results that match" do
+    #   smith = Contact.create(
+    #     firstname: 'John',
+    #     lastname: 'Smith',
+    #     email: 'jsmith@example.com'
+    #   )
+    #   jones = Contact.create(
+    #     firstname: 'Tim',
+    #     lastname: 'Jones',
+    #     email: 'tjones@example.com'
+    #   )
+    #   johnson = Contact.create(
+    #     firstname: 'John',
+    #     lastname: 'Johnson',
+    #     email: 'jjohnson@example.com'
+    #   )
+    #   expect(Contact.by_letter("J")).to eq [johnson, jones]
+    #   expect(Contact.by_letter("J")).to eq [@johnson, @jones]
+    # end
+
+    # it "has a scope that omits: results that do not match" do
+    #   smith = Contact.create(
+    #     firstname: 'John',
+    #     lastname: 'Smith',
+    #     email: 'jsmith@example.com'
+    #   )
+    #   jones = Contact.create(
+    #     firstname: 'Tim',
+    #     lastname: 'Jones',
+    #     email: 'tjones@example.com'
+    #   )
+    #   johnson = Contact.create(
+    #     firstname: 'John',
+    #     lastname: 'Johnson',
+    #     email: 'jjohnson@example.com'
+    #   )
+    #   expect(Contact.by_letter("J")).to_not include @smith
+    # end
 
     context "With: matching letters >" do
       it "returns: a sorted array of results that match" do
@@ -109,7 +126,11 @@ describe "Contact.rb model code >" do
     end
   end
 
-  it "has a valid factory" do
+  it "Has: a valid factory" do
     expect(build(:contact)).to be_valid
+  end
+
+  it "Has: three phone numbers" do
+    expect(create(:contact).phones.count).to eq 3
   end
 end
