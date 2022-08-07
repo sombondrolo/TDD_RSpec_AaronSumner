@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe ContactsController do
   # describe "administrator access" do
-    before :each do
-      user = create(:admin)
-      session[:user_id] = user.id
-    end
+    # before :each do
+    #   user = create(:admin)
+    #   session[:user_id] = user.id
+    # end
 
     # shared_examples_for 'public access to contacts' init
 
@@ -209,6 +209,11 @@ describe ContactsController do
   # end
 
   describe "administrator access" do
+    before :each do
+      user = create(:admin)
+      session[:user_id] = user.id
+    end
+    
     # before :each do
     #   set_user_session create(:admin)
     # end
