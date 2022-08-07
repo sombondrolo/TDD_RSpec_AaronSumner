@@ -213,7 +213,7 @@ describe ContactsController do
       user = create(:admin)
       session[:user_id] = user.id
     end
-    
+
     # before :each do
     #   set_user_session create(:admin)
     # end
@@ -227,6 +227,10 @@ describe ContactsController do
       user = create(:user)
       session[:user_id] = user.id
     end
+
+    it_behaves_like 'public access to contacts'
+    it_behaves_like 'full access to contacts'
+  end
 
     # describe 'GET #index' do
     #   it "collects users into @users" do
@@ -250,51 +254,50 @@ describe ContactsController do
     #   post :create, user: attributes_for(:user)
     #   expect(response).to redirect_to root_url
     # end
-  end
 
   describe "guest access" do
     # GET #index and GET #show examples are the same as those 4
     # administrators and users
     it_behaves_like 'public access to contacts'
 
-    # describe 'GET #new' do
-    #   it "requires login" do
-    #     get :new
-    #     # expect(response).to redirect_to login_url
-    #     expect(response).to require_login
-    #   end
-    # end
+    describe 'GET #new' do
+      it "requires login" do
+        get :new
+        expect(response).to redirect_to login_url
+        # expect(response).to require_login
+      end
+    end
     
-    # describe 'GET #edit' do
-    #   it "requires login" do
-    #     contact = create(:contact)
-    #     get :edit, id: contact
-    #     expect(response).to redirect_to login_url
-    #   end
-    # end
+    describe 'GET #edit' do
+      it "requires login" do
+        contact = create(:contact)
+        get :edit, id: contact
+        expect(response).to redirect_to login_url
+      end
+    end
     
-    # describe "POST #create" do
-    #   it "requires login" do
-    #     post :create, id: create(:contact),
-    #     contact: attributes_for(:contact)
-    #     expect(response).to redirect_to login_url
-    #   end
-    # end
+    describe "POST #create" do
+      it "requires login" do
+        post :create, id: create(:contact),
+        contact: attributes_for(:contact)
+        expect(response).to redirect_to login_url
+      end
+    end
     
-    # describe 'PATCH #update' do
-    #   it "requires login" do
-    #     put :update, id: create(:contact),
-    #     contact: attributes_for(:contact)
-    #     expect(response).to redirect_to login_url
-    #   end
-    # end
+    describe 'PATCH #update' do
+      it "requires login" do
+        put :update, id: create(:contact),
+        contact: attributes_for(:contact)
+        expect(response).to redirect_to login_url
+      end
+    end
     
-    # describe 'DELETE #destroy' do
-    #   it "requires login" do
-    #     delete :destroy, id: create(:contact)
-    #     expect(response).to redirect_to login_url
-    #   end
-    # end
+    describe 'DELETE #destroy' do
+      it "requires login" do
+        delete :destroy, id: create(:contact)
+        expect(response).to redirect_to login_url
+      end
+    end
   end
 end
 
