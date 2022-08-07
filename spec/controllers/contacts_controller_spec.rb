@@ -7,6 +7,7 @@ describe ContactsController do
       session[:user_id] = user.id
     end
 
+    # shared_examples_for 'public access to contacts' init
     describe 'GET #index' do
       context 'with params[:letter]' do
         it "populates an array of contacts starting with the letter" do
@@ -50,12 +51,16 @@ describe ContactsController do
         expect(response).to render_template :show
       end
     end
+  # end shared_examples_for 'public access to contacts'
 
+    # shared_examples 'full access to contacts' init
     describe 'GET #new' do
       it "assigns a new Contact to @contact" do
         get :new
         expect(assigns(:contact)).to be_a_new(Contact)
       end
+
+      # it "assigns a home, office, and mobile phone to the new contact" init
 
       it "renders the :new template" do
         get :new
@@ -152,6 +157,8 @@ describe ContactsController do
       end
 
       context "with invalid attributes" do
+        # it "locates the requested @contact"
+
         it "does not change the contact's attributes" do
           patch :update, id: @contact,
           contact: attributes_for(:contact,
@@ -188,6 +195,15 @@ describe ContactsController do
     end
   end
 
+  # describe "administrator access" do end
+  #   before :each do end
+  #     set_user_session create(:admin)
+  #   end
+
+  #   it_behaves_like 'public access to contacts'
+  #   it_behaves_like 'full access to contacts'
+  # end
+
   describe "user access" do
     before :each do
       user = create(:user)
@@ -200,7 +216,7 @@ describe ContactsController do
     #     get :index
     #     expect(assigns(:users)).to match_array [@user,user]
     #   end
-      
+    
     #   it "renders the :index template" do
     #     get :index
     #     expect(response).to render_template :index
