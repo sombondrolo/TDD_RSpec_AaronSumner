@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe ContactsController do
-  # describe "administrator access" do
-    # before :each do
+  # describe "administrator access" doo
+    # before :each doo
     #   user = create(:admin)
     #   session[:user_id] = user.id
     # end
@@ -209,51 +209,32 @@ describe ContactsController do
   # end
 
   describe "administrator access" do
-    before :each do
-      user = create(:admin)
-      session[:user_id] = user.id
-    end
-
-    # before :each do
-    #   set_user_session create(:admin)
+    # before :each doo
+    #   user = create(:admin)
+    #   session[:user_id] = user.id
     # end
+
+    before :each do
+      set_user_session create(:admin)
+    end
 
     it_behaves_like 'public access to contacts'
     it_behaves_like 'full access to contacts'
   end
 
   describe "user access" do
+    # before :each do
+    #   user = create(:user)
+    #   session[:user_id] = user.id
+    # end
+
     before :each do
-      user = create(:user)
-      session[:user_id] = user.id
+      set_user_session create(:user)
     end
 
     it_behaves_like 'public access to contacts'
     it_behaves_like 'full access to contacts'
   end
-
-    # describe 'GET #index' do
-    #   it "collects users into @users" do
-    #     user = create(:user)
-    #     get :index
-    #     expect(assigns(:users)).to match_array [@user,user]
-    #   end
-    
-    #   it "renders the :index template" do
-    #     get :index
-    #     expect(response).to render_template :index
-    #   end
-    # end
-    
-    # it "GET #new denies access" do
-    #   get :new
-    #   expect(response).to redirect_to root_url
-    # end
-    
-    # it "POST#create denies access" do
-    #   post :create, user: attributes_for(:user)
-    #   expect(response).to redirect_to root_url
-    # end
 
   describe "guest access" do
     # GET #index and GET #show examples are the same as those 4
@@ -301,3 +282,26 @@ describe ContactsController do
   end
 end
 
+  # estas no andan o no se donde van
+    # describe 'GET #index' do
+    #   it "collects users into @users" do
+    #     user = create(:user)
+    #     get :index
+    #     expect(assigns(:users)).to match_array [@user,user]
+    #   end
+    
+    #   it "renders the :index template" do
+    #     get :index
+    #     expect(response).to render_template :index
+    #   end
+    # end
+    
+    # it "GET #new denies access" do
+    #   get :new
+    #   expect(response).to redirect_to root_url
+    # end
+    
+    # it "POST#create denies access" do
+    #   post :create, user: attributes_for(:user)
+    #   expect(response).to redirect_to root_url
+    # end
