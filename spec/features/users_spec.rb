@@ -1,12 +1,16 @@
 require 'rails_helper'
 
-feature 'User management', js: true do
+feature 'User management' do
+  # scenario "adds a new user", js: true do
   scenario "adds a new user" do
     admin = create(:admin)
     sign_in admin
+    # expect(page).to_not have_content("Email or password is invalid")
 
+    # expect(page).to have_content("No contacts found")
     expect{
       click_link 'Users'
+      # click_link 'Userinos'
       click_link 'New User'
       fill_in 'Email', with: 'newuser@example.com'
       find('#password').fill_in 'Password', with: 'secret123'
@@ -21,5 +25,6 @@ feature 'User management', js: true do
       expect(page).to have_content 'Users'
     end
     expect(page).to have_content 'newuser@example.com'
+
   end
 end
