@@ -52,5 +52,10 @@ group :test do
   gem "capybara", "~> 2.4.3"
   gem "database_cleaner", "~> 1.3.0"
   gem "launchy", "~> 2.4.2"
-  gem "selenium-webdriver", "~> 2.43.0"
+  # gem "selenium-webdriver", "~> 2.43.0" # unable to obtain stable firefox connection in 60 seconds (127.0.0.1:7055)
+  # gem "selenium-webdriver", '2.53.4'
+  # gem "selenium-webdriver", "~> 3.0.0" # Unable to find Mozilla geckodriver
+  gem "selenium-webdriver", '3.14.1'   # Unable to find Mozilla geckodriver
+  # gem "selenium-webdriver", '4.3.0'    # which depends on ruby (>= 2.7)
+  gem 'webdrivers', '3.4.3'
 end
