@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 feature 'User management' do
-  # scenario "adds a new user", js: true do
-  scenario "adds a new user" do
-    admin = create(:admin)
-    sign_in admin
-    # expect(page).to_not have_content("Email or password is invalid")
+  # let!(:admin) do
+  #   create(:user, email: 'admin@test.com', password_digest: 'secret', admin: true)
+  # end
 
+  # scenario "adds a new user", js: true do # con js true no anda, no crea el admin
+  scenario "adds a new user" do
+    admin = create(:admin)       # Validation failed: Email has already been taken
+    sign_in admin
+
+    # expect(page).to_not have_content("Email or password is invalid")
     # expect(page).to have_content("No contacts found")
     expect{
       click_link 'Users'
