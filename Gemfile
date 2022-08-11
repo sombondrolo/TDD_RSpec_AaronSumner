@@ -45,6 +45,8 @@ gem 'rake', '< 11.0' # 10.5.0 - January 13, 2016
 group :development, :test do
   gem "rspec-rails", "~> 3.1.0"
   gem "factory_girl_rails", "~> 4.4.1"
+
+  gem 'guard-rspec', '4.7.3'
 end
 
 group :test do
