@@ -47,6 +47,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.filter_run focus: true
+
   # config.run_all_when_everything_filtered = true # no estoy seguro que hace
   # config.filter_run js: true                     # rspec solo el tag
   # config.filter_run_excluding js: true           # excluye el tag
