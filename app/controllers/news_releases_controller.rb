@@ -28,7 +28,7 @@ class NewsReleasesController < ApplicationController
 
     respond_to do |format|
       if @news_release.save
-        format.html { redirect_to @news_release, notice: 'News release was successfully created.' }
+        format.html { redirect_to news_releases_path, notice: 'Successfully created news release.' }
         format.json { render :show, status: :created, location: @news_release }
       else
         format.html { render :new }
