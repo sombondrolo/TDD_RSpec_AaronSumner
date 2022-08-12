@@ -60,5 +60,6 @@ group :test do
   # gem "selenium-webdriver", "~> 3.0.0" # Unable to find Mozilla geckodriver
   gem "selenium-webdriver", '3.14.1'   # Unable to find Mozilla geckodriver
   # gem "selenium-webdriver", '4.3.0'    # which depends on ruby (>= 2.7)
-  gem 'webdrivers', '3.4.3'
+  gem 'webdrivers', '3.4.3'            # para hacer andar Capybara specs
+  gem 'shoulda-matchers', '~> 2.6.2'
 end
