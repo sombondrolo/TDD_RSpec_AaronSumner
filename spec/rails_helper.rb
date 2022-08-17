@@ -47,11 +47,11 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.filter_run focus: true
+  # config.filter_run focus: true
 
   # config.run_all_when_everything_filtered = true # no estoy seguro que hace
   # config.filter_run js: true                     # rspec solo el tag
-  # config.filter_run_excluding js: true           # excluye el tag
+  config.filter_run_excluding js: true           # excluye el tag
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false

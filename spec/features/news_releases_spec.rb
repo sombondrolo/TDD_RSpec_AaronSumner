@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "News releases", focus: true do
+feature "News releases" do
   context "as a user" do
     scenario "adds a news release" do
       user = create(:user)
@@ -24,6 +24,17 @@ feature "News releases", focus: true do
   end
   
   context "as a guest" do
-    scenario "reads a news release"
+    scenario "reads a news release" do
+      # pending "You write this one!"
+      visit root_path
+      click_link "News"
+
+      expect(page).not_to have_content "Today, BigCo's CFO announced record growth."
+      expect(page).not_to have_content 'Add News Release'
+
+      click_link "2013-08-01: Record profits for BigCo!"
+
+      expect(page).to have_content "Today, BigCo's CFO announced record growth."
+    end
   end
 end

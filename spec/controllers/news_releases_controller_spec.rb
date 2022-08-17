@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe NewsReleasesController, focus: true do
+describe NewsReleasesController do
   describe 'GET #new' do
     it "requires login" do
       get :new
